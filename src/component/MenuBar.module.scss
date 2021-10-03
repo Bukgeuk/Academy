@@ -1,0 +1,41 @@
+@use "sass:math";
+@use "../App.module.scss" as *;
+
+$menuColor: #FFFFFF;
+$menuHeight: 85px;
+
+#MenuBar {
+    background-color: $menuColor;
+    height: $menuHeight;
+    box-shadow: 0px 2px 10px 1px rgb(212, 212, 212);
+    $paddingValue: calc((100vw - #{$pageWidth}) / 2);
+    padding: 0 $paddingValue 0 $paddingValue;
+    font-family: ImcreSoojin;
+}
+
+#logo {
+    & > img {
+        float: left;
+        margin-top: math.div(($menuHeight - 60px), 2);
+        margin-bottom: math.div(($menuHeight - 60px), 2);
+        height: 60px;
+        width: 60px;
+    }
+
+    & > div {
+        display: flex;
+        align-items: center;
+        float: left;
+        padding-left: 10px;
+        height: $menuHeight;
+        font-size: 1.6rem;
+    }
+}
+
+#member {
+    float: right;
+    margin-top: math.div(($menuHeight - 30px), 2);
+    margin-bottom: math.div(($menuHeight - 30px), 2);
+    height: 30px;
+    width: 30px;
+}

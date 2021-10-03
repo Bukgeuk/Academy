@@ -1,0 +1,33 @@
+#Footer {
+    background-color: #2f3142;
+    padding: 48px;
+    font-family: ElandChoiceM;
+    color: white;
+    font-size: 1.5em;
+}
+
+#Top {
+    display: flex;
+
+    & > img {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+.FooterMenu {
+    display: flex;
+    margin-left: 4rem;
+
+    & > div {
+        display: flex;
+        align-items: center;
+        float: left;
+        font-size: 1rem;
+    }
+
+    & > div + div {
+        margin-left: 2rem;
+    }
+}
+

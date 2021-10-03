@@ -1,0 +1,25 @@
+@use "./Page.module.scss";
+
+#Article {
+    @include Page.Article;
+    font-family: ELandChoiceM;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > div {
+        & > img {
+            width: 600px;
+        }
+
+        & > span {
+            font-size: 1.8rem;
+        }
+
+        & > h1 {
+            text-align: center;
+            margin: 0 0 40px 0;
+            font-size: 8rem;
+        }
+    }
+}
