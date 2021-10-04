@@ -9,7 +9,7 @@ import About from './page/About';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="">
         <Switch>
           <Route exact path='/' component={Home}></Route>
           <Route path='/about' component={About}></Route>

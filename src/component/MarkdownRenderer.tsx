@@ -28,12 +28,14 @@ const MarkdownRenderer = (props: markdownProps) => {
                     } else {
                         const match = /language-(\w+)/.exec(className || '')
                         return match ? (
-                          <SyntaxHighlighter
-                            children={String(children).replace(/\n$/, '')}
-                            style={androidstudio}
-                            language={match[1]}
-                            PreTag="div"  
-                          />
+                          <div className={styles.allowDrag}>
+                              <SyntaxHighlighter
+                                children={String(children).replace(/\n$/, '')}
+                                style={androidstudio}
+                                language={match[1]}
+                                PreTag="div"  
+                            />
+                          </div>
                         ) : (
                           <code className={className} {...props}>
                             {children}

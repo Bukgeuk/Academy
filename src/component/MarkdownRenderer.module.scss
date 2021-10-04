@@ -13,3 +13,11 @@
     border-left: 5px solid #6d6eeb;
     margin-left: 0;
 }
+
+.allowDrag {
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+}
