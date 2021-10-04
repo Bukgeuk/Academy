@@ -6,11 +6,11 @@ import MenuBar from "../component/MenuBar"
 import Footer from "../component/Footer"
 
 interface LectureInfoProps {
-    location: string
+    id: number,
     name: string
 }
 
-const Lecture = (props: LectureInfoProps) => {
+const LectureItem = (props: LectureInfoProps) => {
     const history = useHistory()
 
     const handleDragStart = (e: React.DragEvent) => {
@@ -18,18 +18,22 @@ const Lecture = (props: LectureInfoProps) => {
     }
 
     const handleClick = () => {
-        history.push('/' + props.location)
+        history.push('/' + props.id)
     }
 
     return (
         <div className={styles.Item} onClick={handleClick}>
-            <img src={process.env.PUBLIC_URL + '/img/language/' + props.location + '.png'} alt={props.location} onDragStart={handleDragStart}></img>
+            <img src={process.env.REACT_APP_API + `/lecture/image/${props.id}`} alt="이미지" onDragStart={handleDragStart}></img>
             <div>{props.name}</div>
         </div>
     )
 }
 
-const Home = () => {
+const Home = (props: { lectureList: string[] }) => {
+    const list = props.lectureList.map((value, index) => {
+        return <LectureItem id={index} name={value} key={index}></LectureItem>
+    })
+
     return (
         <section>
             <MenuBar></MenuBar>
@@ -38,7 +42,7 @@ const Home = () => {
                     등록된 강좌
                 </div>
                 <div className={styles.Container}>
-                    <Lecture location="c++" name="처음부터 배우는 C++"></Lecture>
+                    {list}
                 </div>
             </article>
             <Footer></Footer>

@@ -13,10 +13,12 @@ import LectureContent from "../component/lecture/LectureContent";
 
 dotenv.config()
 
-const Lecture = (props: { lectureId: string }) => {
-    
+const Lecture = () => {
     const { path } = useRouteMatch()
-    const params = window.location.href.substr((process.env.REACT_APP_API + path).length + 1).split('/').filter((value) => value !== "")
+    const params = window.location.href.substr(`${process.env.REACT_APP_API}`.length + 1).split('/').filter((value) => value !== "")
+    const lecturdId = Number(params[0])
+    const unitId = Number(params[1])
+    const smallUnitId = Number(params[2])
 
     const [navData, setNavData] = useState<ILecture>()
     const [articleData, setArticleData] = useState('')
@@ -24,23 +26,19 @@ const Lecture = (props: { lectureId: string }) => {
     const [isUnitTitleOpened, setIsUnitTitleOpened] = useState(new Array<boolean>(navData === undefined ? 0 : navData.children.length).fill(false))
 
     useEffect(() => {
-        console.log('데이터 요청')
-        axios.get(process.env.REACT_APP_API + `/lecture/${props.lectureId}`).then((res) => {
+        axios.get(process.env.REACT_APP_API + `/lecture/${lecturdId}`).then((res) => {
             setIsUnitTitleOpened(new Array<boolean>((res.data as unknown as ILecture).children.length).fill(false))
             setNavData(res.data)
-            console.log('데이터 받아옴')
         })
-    }, [props.lectureId])
+    }, [lecturdId])
 
     useEffect(() => {
-        console.log('글 데이터 요청')
-        if (params.length > 0) {
-            axios.get(process.env.REACT_APP_API + `/lecture/${props.lectureId}/${params[0]}/${params[1]}`).then((res) => {
+        if (params.length > 1) {
+            axios.get(process.env.REACT_APP_API + `/lecture/${lecturdId}/${unitId}/${smallUnitId}`).then((res) => {
                 setArticleData(res.data)
-                console.log('글 데이터 받아옴')
             })
         }
-    }, [params, props.lectureId])
+    }, [lecturdId, params.length, smallUnitId, unitId])
 
     const toggleLectureTitleOpened = () => {
         setIsLectureTitleOpened(!isLectureTitleOpened)
@@ -56,7 +54,7 @@ const Lecture = (props: { lectureId: string }) => {
         <div>
             <MenuBar></MenuBar>
             <section id={styles.Section}>
-                <Nav lecture={navData} href={path} toggleLectureTitleOpened={toggleLectureTitleOpened} isLectureTitleOpened={isLectureTitleOpened}
+                <Nav lecture={navData} href={`/${lecturdId}`} toggleLectureTitleOpened={toggleLectureTitleOpened} isLectureTitleOpened={isLectureTitleOpened}
                     toggleUnitTitleOpened={toggleUnitTitleOpened} isUnitTitleOpened={isUnitTitleOpened}></Nav>
                 <Route exact path={path} component={() => {
                     if (navData)
@@ -66,8 +64,11 @@ const Lecture = (props: { lectureId: string }) => {
                 }}></Route>
                 <Route path={path + '/:uid/:suid'} component={() => {
                     if (navData) {
-                        const title = navData.children.filter((value) => value.id === params[0])[0].children.filter((value) => value.id === params[1])[0].name
-                        return <LectureArticle title={title} article={articleData}></LectureArticle>
+                        const title = navData.children[unitId].children[smallUnitId].name
+                        if (title)
+                            return <LectureArticle title={title} article={articleData}></LectureArticle>
+                        else 
+                            return <div></div>
                     } else
                         return <div></div>  
                 }}></Route>

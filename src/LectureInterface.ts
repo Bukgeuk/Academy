@@ -1,10 +1,8 @@
 export interface ILectureSmallUnit {
-    id: string,
     name: string
 }
 
 export interface ILectureUnit {
-    id: string,
     name: string,
     description: string | null,
     children: ILectureSmallUnit[]
