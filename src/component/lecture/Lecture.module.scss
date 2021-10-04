@@ -1,0 +1,11 @@
+#Article {
+    flex: 1;
+    margin-left: 20px;
+}
+
+#LectureTitle {
+    & > span {
+        font-family: ElandChoiceM;
+        font-size: 2rem;
+    }
+}

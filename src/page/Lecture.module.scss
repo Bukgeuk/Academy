@@ -1,0 +1,6 @@
+@import "./Page.module.scss";
+
+#Section {
+    @include DefaultArticle;
+    display: flex;
+}

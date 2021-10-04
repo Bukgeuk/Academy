@@ -1,0 +1,33 @@
+{
+    "name": "처음부터 배우는 C++",
+    "description": "이 강의에서는 C++의 기본 문법을 배웁니다",
+    "author": "Bukgeuk_",
+    "children": [
+        {
+            "id": "0",
+            "name": "환경 설정하기",
+            "description": "환경 설정하는 방법을 배웁니다",
+            "children": [
+                {
+                    "id": "1",
+                    "name": "Visual Studio"
+                }
+            ]
+        },
+        {
+            "id": "1",
+            "name": "기본 문법",
+            "description": null,
+            "children": [
+                {
+                    "id": "1",
+                    "name": "세미콜론"
+                },
+                {
+                    "id": "2",
+                    "name": "주석"
+                }
+            ]
+        }
+    ]
+}

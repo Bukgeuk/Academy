@@ -1,0 +1,5 @@
+@import "./Page.module.scss";
+
+#Article {
+    @include DefaultArticle;
+}

@@ -32,11 +32,16 @@ code {
 }
 
 @font-face {
-  font-family: 'ImcreSoojin';
-  src: url('./assets/font/ImcreSoojin.woff') format('woff');
+  font-family: 'ElandChoiceM';
+  src: url('./assets/font/ELAND_Choice_M.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'ElandChoiceM';
-  src: url('./assets/font/ELAND_Choice_M.woff') format('woff');
+  font-family: 'ElandChoiceL';
+  src: url('./assets/font/ELAND_Choice_L.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'ElandChoiceB';
+  src: url('./assets/font/ELAND_Choice_B.woff') format('woff');
 }

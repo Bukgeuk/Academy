@@ -1,0 +1,58 @@
+$marginValue: 20px;
+
+#Nav {
+    width: 260px;
+    padding: 20px;
+}
+
+.LectureTitle {
+    cursor: pointer;
+    & > span {
+        font-family: ElandChoiceB;
+    }
+    & > img {
+        margin-left: 10px;
+        height: 10px;
+        width: 10px;
+    }
+    margin-bottom: 10px;
+}
+
+.UnitTitle {
+    cursor: pointer;
+    & > span {
+        font-family: ElandChoiceM;
+    }
+    & > img {
+        margin-left: 10px;
+        height: 10px;
+        width: 10px;
+    }
+}
+
+.opened {
+    transform: rotate(-90deg);
+}
+
+.closed {
+    transform: rotate(90deg);
+}
+
+.SmallUnitTitle {
+    cursor: pointer;
+    & > span {
+        font-weight: 600;
+        font-family: ElandChoiceL;
+    }
+    margin-top: 5px;
+}
+
+.low {
+    margin-left: $marginValue;
+    margin-bottom: 10px;
+}
+
+.selected {
+    color: #009fe5;
+    font-family: ElandChoiceM;
+}

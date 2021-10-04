@@ -1,7 +1,7 @@
-@use "./Page.module.scss";
+@import "./Page.module.scss";
 
 #Article {
-    @include Page.Article;
+    @include DefaultArticle;
     font-family: ELandChoiceM;
     display: flex;
     justify-content: space-between;

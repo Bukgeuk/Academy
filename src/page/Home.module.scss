@@ -1,27 +1,27 @@
-@use "./Page.module.scss";
+@import "./Page.module.scss";
 
-article {
-    @include Page.Article;
+#Article {
+    @include DefaultArticle;
 }
 
 #Title {
-    font-family: ElandChoiceM;
+    font-family: ElandChoiceB;
     font-size: 1.8em;
     color: #009fe5;
 }
 
-#Container {
+.Container {
     margin-top: 70px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 
-    & > #Item + #Item {
+    & > .Item + .Item {
         margin-left: 20px;
     }
 }
 
-#Item {
+.Item {
     text-align: center;
     padding: 20px;
     border: 1px solid rgb(182, 182, 182);
@@ -44,7 +44,7 @@ article {
     }
 
     &:hover {
-        box-shadow: 2px 2px 10px 1px rgb(212, 212, 212);
+        box-shadow: 2px 2px 10px 1px rgb(212, 212, 212);   
         cursor: pointer;
     }
 }

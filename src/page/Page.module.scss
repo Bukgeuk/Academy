@@ -1,8 +1,8 @@
-@use "../App.module.scss" as *;
-@use "../component/MenuBar.module.scss";
+@import "../App.module.scss";
+@import "../component/MenuBar.module.scss";
 
-@mixin Article {
-    height: calc(100vh - #{MenuBar.$menuHeight} - 200px);
+@mixin DefaultArticle {
+    height: calc(100vh - #{$menuHeight} - 200px);
     $paddingValue: calc((100vw - #{$pageWidth}) / 2);
     padding: 100px $paddingValue 100px $paddingValue;
 }
