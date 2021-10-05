@@ -15,7 +15,7 @@ dotenv.config()
 
 const Lecture = () => {
     const { path } = useRouteMatch()
-    const params = window.location.href.substr(`${process.env.REACT_APP_API}`.length + 1).split('/').filter((value) => value !== "")
+    const params = window.location.href.split('/').slice(3).filter((value) => value !== "")
     const lecturdId = Number(params[0])
     const unitId = Number(params[1])
     const smallUnitId = Number(params[2])

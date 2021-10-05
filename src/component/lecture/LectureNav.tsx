@@ -34,8 +34,11 @@ const SmallUnit = (props: SmallUnitProps) => {
         history.push(props.href)
     }
 
+    const params = window.location.href.split('/').slice(3).filter((value) => value !== "").join('/')
+    const pparams = props.href.split('/').filter((value) => value !== "").join('/')
+
     let cname = `${styles.SmallUnitTitle}`
-    if (window.location.href.substr(`${process.env.REACT_APP_API}`.length) === props.href)
+    if (params === pparams)
         cname += ` ${styles.selected}`
 
     return (
