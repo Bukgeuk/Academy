@@ -4,7 +4,6 @@ export interface ILectureSmallUnit {
 
 export interface ILectureUnit {
     name: string,
-    description: string | null,
     children: ILectureSmallUnit[]
 }
 
