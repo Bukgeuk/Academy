@@ -1,0 +1,42 @@
+.correct {
+    background-color: #dff0d8;
+}
+
+.incorrect {
+    background-color: #f2dede;
+}
+
+.QuizTextInput {
+    font-family: ElandChoiceM;
+    padding: 8px 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.check {
+    width: 300px;
+    height: 27px;
+    & > input {
+        position: relative;
+        top: 1.6px;
+    }
+    & > label {
+        margin-left: 5px;
+    }
+}
+
+.quiz {
+    font-family: ElandChoiceM;
+
+    & > .question {
+        font-size: 1.15rem;
+        margin-bottom: 20px;  
+    }
+    
+    margin-bottom: 50px;
+}
+
+#QuizList {
+    margin-top: 50px;
+}

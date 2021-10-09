@@ -1,5 +1,6 @@
 export interface ILectureSmallUnit {
-    name: string
+    name: string,
+    isQuiz: boolean
 }
 
 export interface ILectureUnit {
@@ -12,4 +13,20 @@ export interface ILecture {
     description: string | null,
     author: string,
     children: ILectureUnit[]
+}
+
+export interface ILectureQuizSubjectiveAnswer {
+    correctAnswer: string[]
+}
+
+export interface ILectureQuizObjectiveAnswer {
+    answerList: string[]
+    correctAnswer: number[]
+}
+
+export interface ILectureQuiz {
+    question: string,
+    isSubjective: boolean,
+    answer: ILectureQuizObjectiveAnswer | ILectureQuizSubjectiveAnswer,
+    explanation: string
 }

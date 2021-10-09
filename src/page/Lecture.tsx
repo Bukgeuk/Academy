@@ -8,8 +8,9 @@ import MenuBar from "../component/MenuBar";
 import Footer from "../component/Footer";
 import Nav from "../component/lecture/LectureNav";
 import LectureArticle from "../component/lecture/LectureArticle";
-import { ILecture } from "../LectureInterface"
+import { ILecture, ILectureQuiz } from "../LectureInterface"
 import LectureContent from "../component/lecture/LectureContent";
+import LectureQuiz from "../component/lecture/LectureQuiz";
 
 dotenv.config()
 
@@ -22,8 +23,11 @@ const Lecture = () => {
 
     const [navData, setNavData] = useState<ILecture>()
     const [articleData, setArticleData] = useState('')
+    const [quizData, setQuizData] = useState<ILectureQuiz[]>()
     const [isLectureTitleOpened, setIsLectureTitleOpened] = useState(true)
     const [isUnitTitleOpened, setIsUnitTitleOpened] = useState(new Array<boolean>(navData === undefined ? 0 : navData.children.length).fill(false))
+
+    const isQuiz = navData?.children[unitId]?.children[smallUnitId]?.isQuiz
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_API + `/lecture/${lecturdId}`).then((res) => {
@@ -34,11 +38,17 @@ const Lecture = () => {
 
     useEffect(() => {
         if (params.length > 1) {
-            axios.get(process.env.REACT_APP_API + `/lecture/${lecturdId}/${unitId}/${smallUnitId}`).then((res) => {
-                setArticleData(res.data)
-            })
+            if (isQuiz === true) {
+                axios.get(process.env.REACT_APP_API + `/lecture/${lecturdId}/${unitId}/${smallUnitId}?isQuiz=true`).then((res) => {
+                    setQuizData(res.data)
+                })
+            } else if (isQuiz === false) {
+                axios.get(process.env.REACT_APP_API + `/lecture/${lecturdId}/${unitId}/${smallUnitId}?isQuiz=false`).then((res) => {
+                    setArticleData(res.data)
+                })
+            }     
         }
-    }, [lecturdId, params.length, smallUnitId, unitId])
+    }, [lecturdId, params.length, smallUnitId, unitId, isQuiz])
 
     const toggleLectureTitleOpened = () => {
         setIsLectureTitleOpened(!isLectureTitleOpened)
@@ -65,8 +75,12 @@ const Lecture = () => {
                 <Route path={path + '/:uid/:suid'} component={() => {
                     if (navData) {
                         const title = navData.children[unitId].children[smallUnitId].name
-                        if (title)
-                            return <LectureArticle title={title} article={articleData}></LectureArticle>
+                        if (title) {
+                            if (isQuiz)
+                                return <LectureQuiz title={title} quiz={quizData}></LectureQuiz>
+                            else
+                                return <LectureArticle title={title} article={articleData}></LectureArticle>
+                        }
                         else 
                             return <div></div>
                     } else
